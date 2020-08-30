@@ -1,7 +1,12 @@
-import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
-export default class CreateTransactions1598783260534 implements MigrationInterface {
-
+export default class CreateTransactions1598783260534
+  implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -21,15 +26,11 @@ export default class CreateTransactions1598783260534 implements MigrationInterfa
           {
             name: 'value',
             type: 'decimal',
-            precision:10,
-            scale:2,
+            precision: 10,
+            scale: 2,
           },
           {
             name: 'type',
-            type: 'varchar',
-          },
-          {
-            name: 'password',
             type: 'varchar',
           },
           {
@@ -62,8 +63,7 @@ export default class CreateTransactions1598783260534 implements MigrationInterfa
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('transactions','TransactionCategory');
+    await queryRunner.dropForeignKey('transactions', 'TransactionCategory');
     await queryRunner.dropTable('transactions');
   }
-
 }
